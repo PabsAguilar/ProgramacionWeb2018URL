@@ -31,7 +31,7 @@
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
-    <div class="container">
+    <div class="container" id ='ddheader'>
       <a class="navbar-brand js-scroll-trigger" href="#page-top" >Lab01</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button"
         data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -119,6 +119,7 @@
               </div>
             </div>
             <img class="img-fluid" src="img/portfolio/game.png" alt="">
+            Change Actions Color
           </a>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -328,13 +329,18 @@
     var j = 0;
 
     function ChangeRowColor() {
+      
       if (j === 0) {
-        document.getElementById('mainNav').style.color = 'red';
+        document.getElementById('ddheader').style.color = 'red';
+        document.getElementById('ddheader').style.backgroundColor = 'black';
         j = 1;
+        
       } else {
-        document.getElementById('mainNav').style.color = 'black';
+        document.getElementById('ddheader').style.color = 'black';
+        document.getElementById('ddheader').style.backgroundColor = 'red';
         j = 0;
       }
+
 
     }
   </script>
