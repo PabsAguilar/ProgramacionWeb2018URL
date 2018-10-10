@@ -37,7 +37,7 @@ private routes(): void {
       });
     });
     this.express.use('/', router);
-    this.express.use('/api/v1/Sku', SkuRouter);
+    this.express.use('/api/v1/sku', SkuRouter);
   }
 
 }

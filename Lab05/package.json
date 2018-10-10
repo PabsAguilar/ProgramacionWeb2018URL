@@ -29,10 +29,14 @@
     "typescript": "^2.0.6"
   },
   "dependencies": {
+    "@types/express-serve-static-core": "^4.0.49",
     "body-parser": "^1.15.2",
+    "chai-webdriver": "^1.2.0",
     "debug": "^2.2.0",
     "express": "^4.14.0",
     "morgan": "^1.7.0",
-    "tslint": "^5.11.0"
+    "selenium-webdriver": "^3.6.0",
+    "tslint": "^5.11.0",
+    "webdriver-sizzle": "^0.2.2"
   }
 }

@@ -2,6 +2,7 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const SkuRouter_1 = require('./routes/SkuRouter');
 // Creates and configures an ExpressJS web server.
 class App {
     //Run configuration methods on the Express instance.
@@ -29,6 +30,7 @@ class App {
             });
         });
         this.express.use('/', router);
+        this.express.use('/api/v1/sku', SkuRouter_1.default);
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });
