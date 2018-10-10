@@ -55,4 +55,24 @@ describe('GET api/v1/sku', () => {
   
   });
 
+  describe('POST api/v1/sku', () => {
+
+    it('responds with single JSON object', () => {
+      return chai.request(app).post('/api/v1/sku')
+        .then(res => {
+          expect(res.status).to.equal(200);
+          expect(res).to.be.json;
+          expect(res.body).to.be.an('object');
+        });
+    });
+  
+    // it('should return sku0001', () => {
+    //   return chai.request(app).get('/api/v1/sku/sku0001')
+    //     .then(res => {
+    //       expect(res.body.sku.sku).to.equal('sku0001');
+    //     });
+    // });
+  
+  });
+
 });
