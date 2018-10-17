@@ -1,13 +1,19 @@
 "use strict";
-class Sku {
-    constructor(sku = "", description = "", createDate = null, image = "", family = "") {
+var Sku = (function () {
+    function Sku(sku, description, createDate, image, family) {
+        if (sku === void 0) { sku = ""; }
+        if (description === void 0) { description = ""; }
+        if (createDate === void 0) { createDate = null; }
+        if (image === void 0) { image = ""; }
+        if (family === void 0) { family = ""; }
         this.sku = sku;
         this.description = description;
         this.createDate = createDate;
         this.image = image;
         this.family = family;
     }
-}
+    return Sku;
+}());
 exports.Sku = Sku;
 // var mongoose = require("mongoose"),
 //   Schema = mongoose.Schema;
@@ -19,8 +25,8 @@ exports.Sku = Sku;
 //   family: { type: String }
 // });
 // module.exports = mongoose.model("Sku", Sku);
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 exports.SkuSchema = new Schema({
     sku: {
         type: String,

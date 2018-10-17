@@ -20,3 +20,27 @@ export class Sku {
 // });
 
 // module.exports = mongoose.model("Sku", Sku);
+
+import * as mongoose from 'mongoose';
+
+const Schema = mongoose.Schema;
+
+export const SkuSchema = new Schema({
+    sku: {
+        type: String,
+        required: 'Enter a first name'
+    },
+    description: {
+        type: String,
+        required: 'Enter a last name'
+    },
+    createDate: {
+        type: Date            
+    },
+    family: {
+        type: String            
+    },
+    image: {
+        type: String            
+    }
+});
