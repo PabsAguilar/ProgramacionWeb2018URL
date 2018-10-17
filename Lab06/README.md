@@ -1,4 +1,4 @@
-# Lab 04 Restful Api Node Js
+# Lab 06 Rest Api Node Js MongoDB
 
 ## Rutas
 
