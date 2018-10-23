@@ -32,6 +32,20 @@ class App {
         message: "Hello World!"
       });
     });
+
+    this.app.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+      );
+      res.header(
+        "Access-Control-Allow-Methods",
+        "PUT, POST, GET, DELETE, OPTIONS"
+      );
+      next();
+    });
+
     this.app.use("/", router);
     this.app.use("/api/v1/sku", this.routePrv.router);
   }

@@ -20,13 +20,15 @@ export class SkuRouter {
    */
   public getAll(req: Request, res: Response, next: NextFunction) {
     try {
-      SkuM.find({}, (err, contact) => {
+      SkuM.find({}, (err, sku) => {
         if (err) {
           res.statusCode = 500;
           res.send(err);
+          return;
         }
-        res.statusCode = 201;
-        res.json(contact);
+        res.statusCode = 200;
+        res.json(sku);
+        return;
       });
     } catch (error) {
       res.statusCode = 500;
@@ -90,11 +92,11 @@ export class SkuRouter {
           });
         }
         res.statusCode = 201;
-        res.send({
+        return res.send({
           message: "Success",
-          status: res.status
+          status: res.status,
+          sku: sku
         });
-        res.json(sku);
       });
     } catch (error) {
       res.statusCode = 500;
@@ -113,7 +115,7 @@ export class SkuRouter {
       SkuM.findOneAndUpdate(
         { _id: req.params.id },
         req.body,
-        { new: true },
+        { new: false },
         (err, sku) => {
           if (err) {
             res.statusCode = 404;
