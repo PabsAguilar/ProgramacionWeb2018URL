@@ -10,7 +10,7 @@ class App {
   public mongoUrl: string = "mongodb://localhost/store";
   public redis;
   constructor(redis) {
-    this.redis = redis;
+    //this.redis = redis;
     this.mongoSetup();
     this.app = express();
     this.config();
@@ -30,23 +30,23 @@ class App {
     let router = express.Router();
     // placeholder route handler
 
-    router.get(
-      "/hola",
-      this.redis.route({
-        name: "home",
-        expire: {
-          "2xx": 60,
-          "4xx": 5,
-          "5xx": 5,
-          xxx: 1
-        }
-      }),
-      (req, res, next) => {
-        res.json({
-          message: "Hello World!"
-        });
-      }
-    );
+    // router.get(
+    //   "/hola",
+    //   this.redis.route({
+    //     name: "home",
+    //     expire: {
+    //       "2xx": 60,
+    //       "4xx": 5,
+    //       "5xx": 5,
+    //       xxx: 1
+    //     }
+    //   }),
+    //   (req, res, next) => {
+    //     res.json({
+    //       message: "Hello World!"
+    //     });
+    //   }
+    // );
 
     router.get("/", (req, res, next) => {
       res.json({
@@ -79,4 +79,4 @@ class App {
   }
 }
 
-export default new App(redisExpressCache).app;
+export default new App().app;
