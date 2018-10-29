@@ -3,6 +3,12 @@ import { SkuSchema } from "../models/sku";
 import * as mongoose from "mongoose";
 
 const SkuM = mongoose.model("Sku", SkuSchema);
+const cache = require("express-expeditious")({
+  namespace: "expresscache",
+  defaultTtl: "1 minute"
+});
+
+import isEmpty = require("lodash/isEmpty");
 
 export class SkuRouter {
   public router: Router;
@@ -173,7 +179,13 @@ export class SkuRouter {
    * endpoints.
    */
   init() {
-    this.router.get("/", this.getAll);
+    this.router.get(
+      "/",
+      this.getAll,
+      cache.withSessionAwareness(false).withCondition(req => {
+        return isEmpty(req.query);
+      })
+    );
     this.router.get("/:id", this.getOne);
     this.router.put("/:id", this.putSku);
     this.router.delete("/:id", this.deleteSku);

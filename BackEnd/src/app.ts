@@ -2,23 +2,37 @@ import * as express from "express";
 import * as mongoose from "mongoose";
 import * as bodyParser from "body-parser";
 import { SkuRouter } from "./routes/SkuRouter";
-import { redisExpressCache } from "redis/redis";
+import getExpeditiousCache = require("express-expeditious");
+import { RedisClient } from "redis/";
 
 class App {
   public app: express.Application;
   public routePrv: SkuRouter = new SkuRouter();
   public mongoUrl: string = "mongodb://localhost/store";
-  public redis;
-  constructor(redis) {
-    //this.redis = redis;
+  public redisCliente;
+  public cache;
+
+  constructor() {
     this.mongoSetup();
+    this.redisCliente = new RedisClient({
+      port: 6379,
+      host: "127.0.0.1"
+    });
+    this.cache = getExpeditiousCache({
+      namespace: "expresscache",
+      defaultTtl: "1 minute",
+      engine: require("expeditious-engine-redis")({
+        host: "127.0.0.1",
+        port: 6379
+      })
+    });
     this.app = express();
     this.config();
     this.routes();
   }
 
   private mongoSetup(): void {
-    mongoose.Promise = global.Promise;
+    (<any>mongoose).Promise = global.Promise;
     mongoose.connect(this.mongoUrl);
   }
 
@@ -29,24 +43,6 @@ class App {
          * API endpoints */
     let router = express.Router();
     // placeholder route handler
-
-    // router.get(
-    //   "/hola",
-    //   this.redis.route({
-    //     name: "home",
-    //     expire: {
-    //       "2xx": 60,
-    //       "4xx": 5,
-    //       "5xx": 5,
-    //       xxx: 1
-    //     }
-    //   }),
-    //   (req, res, next) => {
-    //     res.json({
-    //       message: "Hello World!"
-    //     });
-    //   }
-    // );
 
     router.get("/", (req, res, next) => {
       res.json({
