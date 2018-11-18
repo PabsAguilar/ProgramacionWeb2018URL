@@ -27,6 +27,9 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.117",
-    "@types/mongoose": "^5.2.20"
+    "@types/mongoose": "^5.2.20",
+    "i": "^0.3.6",
+    "typescript": "^3.1.6",
+    "typescriptnpm": "^1.0.1"
   }
 }
