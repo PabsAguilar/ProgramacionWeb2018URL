@@ -1,0 +1,7 @@
+<app-sku-add (skuAdded)="addSku($event)"></app-sku-add>
+
+
+<div class="container">
+  <app-sku *ngFor="let sku of skus" class="col-md-4 p-2" [sku]="sku"> </app-sku>
+
+</div>

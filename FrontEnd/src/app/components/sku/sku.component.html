@@ -1,0 +1,85 @@
+<div>
+  <div class="card">
+    <div class="card-header">
+      <h2>{{sku.sku}}</h2>
+      <p> <b>Description: </b> {{sku.description}}</p>
+      <p>#{{sku._id}}</p>
+      <div class="float-right">
+        <button type="submit" (click)="updateSku(sku,content)" class="btn btn-warning">
+          Edit
+        </button>
+        <a href="sku-crud" (click)="removeSku(sku)" class="btn btn-danger">
+          Remove
+        </a>
+
+      </div>
+
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-5">
+
+          <p><b>Family: </b>{{sku.family}}</p>
+          <p><b>Created Date: </b>{{sku.createDate}}</p>
+        </div>
+        <div class="col-sm-5">
+          <img src="{{sku.image}}" alt="skuimage" onerror='this.src="http://worldartsme.com/?module=images&act=download&url=empty-box-clipart-1.jpg"'
+            width="100%" height="100%">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update sku</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+
+    <form (submit)="updateTask()">
+
+      <div class="form-group">
+        <label for="sku.sku">Sku</label>
+        <div class="input-group">
+          <input class="form-control" type="text" [(ngModel)]="sku.sku" name="sku">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sku.description">Description</label>
+        <div class="input-group">
+          <input class="form-control" type="text" [(ngModel)]="sku.description" name="description">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="sku.image">Image Url</label>
+        <div class="input-group">
+          <input class="form-control" type="text" [(ngModel)]="sku.image" name="image">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sku.family">Family</label>
+        <div class="input-group">
+          <div class="col-10 dropdown" ngbDropdown myDrop="ngbDropdown">
+            <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="sku.family"
+              ngbDropdownToggle>{{sku.family}}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownManual">
+              <button type="button" class="dropdown-item" *ngFor="let family of families" (click)="onChangeFamily(family)">{{
+                family}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <input type="submit" value="update Sku" class="btn btn-primary">
+
+    </form>
+  </div>

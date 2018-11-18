@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="text-right">
+    <button type="submit" class="btn btn-primary" (click)="open(content)">New</button>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add new sku</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+
+    <form (submit)="addTask()">
+
+      <div class="form-group">
+        <label for="sku">Sku</label>
+        <div class="input-group">
+          <input class="form-control" type="text" [(ngModel)]="sku" name="sku">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <div class="input-group">
+          <input class="form-control" type="text" [(ngModel)]="description" name="description">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image Url</label>
+        <div class="input-group">
+          <input class="form-control" type="text" [(ngModel)]="image" name="image">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="family">Family</label>
+        <div class="input-group">
+          <div class="col-10 dropdown" ngbDropdown myDrop="ngbDropdown">
+            <button type="button" class="btn btn-outline-primary" id="dropdownManual" name="family" ngbDropdownToggle>{{family}}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownManual">
+              <button type="button" class="dropdown-item" *ngFor="let family of families" (click)="onChangeFamily(family)">{{family}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <input type="submit" value="Add Sku" class="btn btn-primary">
+
+    </form>
+  </div>
+
+  <!-- <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div> -->
