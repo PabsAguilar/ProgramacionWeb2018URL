@@ -1,31 +1,18 @@
-version: '2' # specify docker-compose version
-
-# Define the services/containers to be run
+version: '3'
 services:
-  angular: # name of the first service
-    build: FrontEnd # specify the directory of the Dockerfile
+  web:
+    image: 127.0.0.1:5000/stackdemo
+    build: frontend
     ports:
-      - "4200:4200" # specify port forewarding
+      - "4200:4200"
   database: # name of the third service
-    image: mongo # specify image to build container from
-    ports:
-      - "27017:27017" # specify port forewarding
-      
+        image:  mongo 
   redis: # name of the third service
-    image: redis # specify image to build container from
-    expose: 
-        - 3679
+    image: redis     
   express: #name of the second service
     build: backend # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports forewarding
-    links:
-    - database
-    - redis
     environment:
     - REDIS_URL=redis://redis
     - Mongo_URL=mongodb://database:27017/store
-
-
-        
-    

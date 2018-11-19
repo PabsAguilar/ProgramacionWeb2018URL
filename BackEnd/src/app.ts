@@ -15,18 +15,18 @@ class App {
 
   constructor() {
     this.mongoSetup();
-    console.log(redisUrl);
-    this.redisCliente = new RedisClient({
-      host: redisUrl,
+    // console.log(redisUrl);
+    // this.redisCliente = new RedisClient({
+    //   host: redisUrl,
 
-    });
-    this.cache = getExpeditiousCache({
-      namespace: "expresscache",
-      defaultTtl: "1 minute",
-      engine: require("expeditious-engine-redis")({
-        host: redisUrl,
-      })
-    });
+    // });
+    // this.cache = getExpeditiousCache({
+    //   namespace: "expresscache",
+    //   defaultTtl: "1 minute",
+    //   engine: require("expeditious-engine-redis")({
+    //     host: redisUrl,
+    //   })
+    // });
     this.app = express();
     this.config();
     this.routes();

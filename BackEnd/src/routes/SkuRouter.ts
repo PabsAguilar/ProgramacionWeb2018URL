@@ -181,11 +181,11 @@ export class SkuRouter {
   init() {
     this.router.get(
       "/"
-      ,
-      this.getAll,
-      cache.withSessionAwareness(false).withCondition(req => {
-        return isEmpty(req.query);
-      })
+      // ,
+      // this.getAll,
+      // cache.withSessionAwareness(false).withCondition(req => {
+      //   return isEmpty(req.query);
+      // })
     );
     this.router.get("/:id", this.getOne);
     this.router.put("/:id", this.putSku);

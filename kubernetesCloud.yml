@@ -1,0 +1,32 @@
+---
+ apiVersion: extensions/v1beta1
+ kind: Deployment
+ metadata:
+   name: pw-final
+ spec:
+   replicas: 2
+   template:
+     metadata:
+       labels:
+         app: web
+     spec:
+       containers:
+       - name: redis
+           image: pacontainers.azurecr.io/programacionweb2018url_redis:dev
+           ports:
+             - containerPort: 3679
+             
+             - name: mongo
+           image: pacontainers.azurecr.io/programacionweb2018url_mongo:dev
+           ports:
+             - containerPort: 27017
+         - name: angular
+           image: pacontainers.azurecr.io/programacionweb2018url_express:dev
+           ports:
+             - containerPort: 4200
+         - name: express 
+           image: pacontainers.azurecr.io/programacionweb2018url_express:dev
+           ports:
+             - containerPort: 3000
+             
+               
