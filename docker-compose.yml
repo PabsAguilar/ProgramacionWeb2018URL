@@ -3,15 +3,9 @@ version: '2' # specify docker-compose version
 # Define the services/containers to be run
 services:
   angular: # name of the first service
-    build: angular-client # specify the directory of the Dockerfile
+    build: FrontEnd # specify the directory of the Dockerfile
     ports:
       - "4200:4200" # specify port forewarding
-
-  express: #name of the second service
-    build: express-server # specify the directory of the Dockerfile
-    ports:
-      - "3000:3000" #specify ports forewarding
-
   database: # name of the third service
     image: mongo # specify image to build container from
     ports:
@@ -21,5 +15,11 @@ services:
     image: redis # specify image to build container from
     ports:
       - "6379:6379" # specify port forewarding
+  express: #name of the second service
+    build: backend # specify the directory of the Dockerfile
+    ports:
+      - "3000:3000" #specify ports forewarding
+
+
         
     
