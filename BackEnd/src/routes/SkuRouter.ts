@@ -180,7 +180,8 @@ export class SkuRouter {
    */
   init() {
     this.router.get(
-      "/",
+      "/"
+      ,
       this.getAll,
       cache.withSessionAwareness(false).withCondition(req => {
         return isEmpty(req.query);

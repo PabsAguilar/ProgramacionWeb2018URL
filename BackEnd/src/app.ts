@@ -4,26 +4,27 @@ import * as bodyParser from "body-parser";
 import { SkuRouter } from "./routes/SkuRouter";
 import getExpeditiousCache = require("express-expeditious");
 import { RedisClient } from "redis/";
-
+const redisUrl = process.env.REDIS_URL || '127.0.0.1';
 class App {
   public app: express.Application;
   public routePrv: SkuRouter = new SkuRouter();
-  public mongoUrl: string = "mongodb://localhost/store";
+  public mongoUrl: string = process.env.Mongo_URL || "mongodb://localhost/store";
+
   public redisCliente;
   public cache;
 
   constructor() {
     this.mongoSetup();
+    console.log(redisUrl);
     this.redisCliente = new RedisClient({
-      port: 6379,
-      host: "127.0.0.1"
+      host: redisUrl,
+
     });
     this.cache = getExpeditiousCache({
       namespace: "expresscache",
       defaultTtl: "1 minute",
       engine: require("expeditious-engine-redis")({
-        host: "127.0.0.1",
-        port: 6379
+        host: redisUrl,
       })
     });
     this.app = express();
@@ -50,7 +51,7 @@ class App {
       });
     });
 
-    this.app.use(function(req, res, next) {
+    this.app.use(function (req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header(
         "Access-Control-Allow-Headers",

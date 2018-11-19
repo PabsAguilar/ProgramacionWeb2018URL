@@ -9,7 +9,6 @@ import { Configuration } from "../app/app.constants";
 import { HttpClientModule } from "@angular/common/http";
 
 import { HomeComponent } from "./home/home.component";
-import { SkuCRUDComponent } from "./sku-crud/sku-crud.component";
 import { SkuAddComponent } from "./components/sku-add/sku-add.component";
 import { SkuListComponent } from "./components/sku-list/sku-list.component";
 import { DataService } from "./services/data.service";

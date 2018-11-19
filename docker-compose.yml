@@ -13,12 +13,18 @@ services:
       
   redis: # name of the third service
     image: redis # specify image to build container from
-    ports:
-      - "6379:6379" # specify port forewarding
+    expose: 
+        - 3679
   express: #name of the second service
     build: backend # specify the directory of the Dockerfile
     ports:
       - "3000:3000" #specify ports forewarding
+    links:
+    - database
+    - redis
+    environment:
+    - REDIS_URL=redis://redis
+    - Mongo_URL=mongodb://database:27017/store
 
 
         
