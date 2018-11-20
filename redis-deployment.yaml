@@ -1,26 +1,55 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
-      convert -f docker-compose.yml
-    kompose.version: 1.17.0 (a74acad)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: redis
-  name: redis
+  name: mongo-c
 spec:
   replicas: 1
-  strategy: {}
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        io.kompose.service: redis
+        app: mongo-c
     spec:
       containers:
-      - image: redis
-        name: redis
-        resources: {}
-      restartPolicy: Always
-status: {}
+      - name: mongo-c
+        image: mongo
+        ports:
+        - containerPort: 27017
+          name: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-c
+spec:
+  ports:
+  - port: 27017
+  selector:
+    app: mongo-c
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: redis-c
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis-c
+    spec:
+      containers:
+      - name: redis-c
+        image: redis
+        ports:
+        - containerPort: 3679
+          name: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-c
+spec:
+  ports:
+  - port: 3679
+  selector:
+    app: redis-c

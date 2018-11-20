@@ -25,6 +25,7 @@ export class SkuRouter {
    * GET all skus.
    */
   public getAll(req: Request, res: Response, next: NextFunction) {
+    console.log("getALL");
     try {
       SkuM.find({}, (err, sku) => {
         if (err) {
@@ -179,10 +180,11 @@ export class SkuRouter {
    * endpoints.
    */
   init() {
+    
     this.router.get(
       "/"
-      // ,
-      // this.getAll,
+       ,
+      this.getAll
       // cache.withSessionAwareness(false).withCondition(req => {
       //   return isEmpty(req.query);
       // })
